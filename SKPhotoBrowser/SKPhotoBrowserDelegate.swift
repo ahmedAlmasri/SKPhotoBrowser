@@ -76,5 +76,13 @@ import Foundation
      Tells the delegate that the controls view toggled visibility
      */
     @objc optional func controlsVisibilityToggled(hidden: Bool) -> Void
+    
+    
+    /**
+     Tells the delegate custam share action
+     */
+    
+    @objc optional func popupShare(_ includeCaption: Bool)
+
 }
 

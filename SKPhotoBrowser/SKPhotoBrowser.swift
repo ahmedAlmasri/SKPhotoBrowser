@@ -336,40 +336,42 @@ public extension SKPhotoBrowser {
         return toolbar.alpha == 0.0
     }
     
-   open func popupShare(includeCaption: Bool = true) {
-        let photo = photos[currentPageIndex]
-        guard let underlyingImage = photo.underlyingImage else {
-            return
-        }
+    func popupShare(includeCaption: Bool = true) {
+       // let photo = photos[currentPageIndex]
         
-        var activityItems: [AnyObject] = [underlyingImage]
-        if photo.caption != nil && includeCaption {
-            if let shareExtraCaption = SKPhotoBrowserOptions.shareExtraCaption {
-                let caption = photo.caption + shareExtraCaption
-                activityItems.append(caption as AnyObject)
-            } else {
-                activityItems.append(photo.caption as AnyObject)
-            }
-        }
-        
-        if let activityItemProvider = activityItemProvider {
-            activityItems.append(activityItemProvider)
-        }
-        
-        activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        activityViewController.completionWithItemsHandler = {
-            (activity, success, items, error) in
-            self.hideControlsAfterDelay()
-            self.activityViewController = nil
-        }
-        if UI_USER_INTERFACE_IDIOM() == .phone {
-            present(activityViewController, animated: true, completion: nil)
-        } else {
-            activityViewController.modalPresentationStyle = .popover
-            let popover: UIPopoverPresentationController! = activityViewController.popoverPresentationController
-            popover.barButtonItem = toolbar.toolActionButton
-            present(activityViewController, animated: true, completion: nil)
-        }
+        delegate?.popupShare?(includeCaption)
+//        guard let underlyingImage = photo.underlyingImage else {
+//            return
+//        }
+//        
+//        var activityItems: [AnyObject] = [underlyingImage]
+//        if photo.caption != nil && includeCaption {
+//            if let shareExtraCaption = SKPhotoBrowserOptions.shareExtraCaption {
+//                let caption = photo.caption + shareExtraCaption
+//                activityItems.append(caption as AnyObject)
+//            } else {
+//                activityItems.append(photo.caption as AnyObject)
+//            }
+//        }
+//        
+//        if let activityItemProvider = activityItemProvider {
+//            activityItems.append(activityItemProvider)
+//        }
+//        
+//        activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+//        activityViewController.completionWithItemsHandler = {
+//            (activity, success, items, error) in
+//            self.hideControlsAfterDelay()
+//            self.activityViewController = nil
+//        }
+//        if UI_USER_INTERFACE_IDIOM() == .phone {
+//            present(activityViewController, animated: true, completion: nil)
+//        } else {
+//            activityViewController.modalPresentationStyle = .popover
+//            let popover: UIPopoverPresentationController! = activityViewController.popoverPresentationController
+//            popover.barButtonItem = toolbar.toolActionButton
+//            present(activityViewController, animated: true, completion: nil)
+//        }
     }
     
     func getCurrentPageIndex() -> Int {
