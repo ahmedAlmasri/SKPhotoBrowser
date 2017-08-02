@@ -336,7 +336,7 @@ public extension SKPhotoBrowser {
         return toolbar.alpha == 0.0
     }
     
-    func popupShare(includeCaption: Bool = true) {
+   public func popupShare(includeCaption: Bool = true) {
         let photo = photos[currentPageIndex]
         guard let underlyingImage = photo.underlyingImage else {
             return
