@@ -1,5 +1,117 @@
 # Change Log
 
+## 6.0.0
+
+### Big Changed
+- #330 Changes for swift 4.2, Xcode 10, and iOS 12 by jlcanale 
+
+#### Updated
+- #314 Add possibility to provide custom request parameters by Fiser33 
+- #315 Fix: Unable to set delete and close button images without setting size. by kiztonwose
+- #318 fix unreleased views in uiwindow for non-dismiss animation case by fans3210
+- #321 Set the backround view's background color from settings by pantelisss 
+- #331 Add ability to lower caption and give caption a background gradient by corban123
+- #334 Prevent app crashed on zooming when xScale or yScale is NaN, Inf by GE-N
+- #335 use the size of the window instead of UIScreen to support SplitScreen by PatrickDotStar
+
+## 5.1.0
+
+#### Updated
+- #311 Delete and Close Button Overlapping bug by rajendersha
+
+## 5.0.9
+
+#### Updated
+- #304 CaptionViewForPhotoAtIndex is not work 
+- #305 Padding properties for close and delete button. 
+- Bug  At iphoneX, close / delete / pagination can be tapped correctly.
+
+## 5.0.8
+
+#### Updated
+- #224 override popupShare not working
+- #248 always ignore image cache, asked by FicowShen
+- #304 CaptionViewForPhotoAtIndex is not work 
+- #301 SKPhotoBrowserOptions.displayDeleteButton not working
+- #302 Add method to remove all images for SKCache by filograno
+
+## 5.0.7
+
+#### Updated
+- #301 SKPhotoBrowserOptions.displayCounterLabel is not working 
+- #297 I want to hide SKPagingScrollView's horizontal indicator by mothule
+
+## 5.0.6
+
+#### Updated
+- #292 Fix crash when imageRatio isNan by arnaudWasappli 
+- #291 When disableVerticalSwipe is true the browser crashes on close by aliillyas 
+
+## 5.0.5
+
+#### Updated
+- #271 SmartInvert now works properly by timroesner 
+- #288 Add the long photo width match screen option by dirtmelon 
+- #289 Add SWIFT_VERSION to xcconfig by cheungpat
+
+## 5.0.4
+
+#### Updated
+- #273 Fixed crash on resizableImageView force unwrapping by matuslittva 
+
+## 5.0.3
+
+#### Updated
+- Refactoring for swift4.0
+
+## 5.0.2
+
+#### Updated
+- #255 Fixed the crash where the PhotoBrowser could crash.
+- #262 Fix calling willDismissAtPageIndex delegate method
+- #263 Remove unused options
+- #263 Use iOS 11 Safe Area Insets to layout toolbar
+- #270 Added functionality to add new photos at the end or at the start of c…
+
+## 5.0.1
+
+#### Updated
+- #246 Updated to Swift 4 and made Swift Lint recommended changes
+
+## 5.0.0
+
+#### Major changed
+- #250 Swift4 merge 
+- #242 swift4 merge
+
+#### Updated
+- #239 Updated padding for iPhone X 
+
+## 4.1.1
+
+#### Updated
+- #208 improve: change deleteButtonPressed(), currentPageIndex access level
+- #210 Fix Shorthand Operator Violation of Swiftlint 
+- #215 swiftLint
+- #216 update code to Swift 3.1 
+- #223 Removed deprecated constants
+- #225 Custom Cancel button title 
+- #227 Attach toolbar and delete button to single browser instance 
+- #236 improve SKPhotoBrowserDelegate 
+
+## 4.1.0
+Released on 30-8-2017
+
+#### Updated
+- #173 Move the willDismiss delegate call closer to the dismissal
+- #196 Improved SKCaptionView
+- #197 fix: deleteButton frame does not update if screen has rotated 
+- #199 Add SKPhotoBrowserOptions to customize indicator color & style 
+- #200 Swap and custom padding for delete and close buttons 
+- #205 Replaced deprecated Pi constants
+- #207 Update code style: to Swift3.1
+- #231 Update SKZoomingScrollView.swift
+
 ## 4.0.1
 Released on 18-1-2017
 

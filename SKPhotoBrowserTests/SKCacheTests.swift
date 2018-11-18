@@ -9,7 +9,6 @@
 import XCTest
 @testable import SKPhotoBrowser
 
-
 class SKCacheTests: XCTestCase {
 
     var cache: SKCache!
@@ -66,5 +65,24 @@ class SKCacheTests: XCTestCase {
         // then
         let cachedImage = self.cache.imageForKey(self.key)
         XCTAssertNil(cachedImage)
+    }
+    
+    func testDefaultCacheRemoveAllImages() {
+        // given
+        let cache = (self.cache.imageCache as? SKDefaultImageCache)!.cache
+        cache.setObject(self.image, forKey: self.key as AnyObject)
+        
+        let anotherImage = UIImage()
+        let anotherKey = "another_test_image"
+        cache.setObject(anotherImage, forKey: anotherKey as AnyObject)
+        
+        // when
+        self.cache.removeAllImages()
+        
+        // then
+        let cachedImage = self.cache.imageForKey(self.key)
+        let anotherCachedImage = self.cache.imageForKey(anotherKey)
+        XCTAssertNil(cachedImage)
+        XCTAssertNil(anotherCachedImage)
     }
 }

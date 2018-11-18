@@ -11,16 +11,16 @@ import SKPhotoBrowser
 import SDWebImage
 
 class FromWebViewController: UIViewController, SKPhotoBrowserDelegate {
-    @IBOutlet weak var imageView: UIImageView!
     var images = [SKPhotoProtocol]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         SKCache.sharedCache.imageCache = CustomImageCache()
-        imageView.sd_setImage(with: URL(string: "https://placehold.jp/1500x1500.png")) {
-            guard let url = $0.3?.absoluteString else { return }
-            SKCache.sharedCache.setImage($0.0!, forKey: url)
+        let url = URL(string: "https://placehold.jp/150x150.png")
+        let complated: SDWebImageCompletionBlock = { (image, error, cacheType, imageURL) -> Void in
+            guard let url = imageURL?.absoluteString else { return }
+            SKCache.sharedCache.setImage(image!, forKey: url)
         }
     }
     
@@ -53,8 +53,7 @@ extension FromWebViewController {
 private extension FromWebViewController {
     func createWebPhotos() -> [SKPhotoProtocol] {
         return (0..<10).map { (i: Int) -> SKPhotoProtocol in
-//            let photo = SKPhoto.photoWithImageURL("https://placehold.jp/150\(i)x150\(i).png", holder: UIImage(named: "image0.jpg")!)
-            let photo = SKPhoto.photoWithImageURL("https://placehold.jp/156\(i)x150\(i).png")
+            let photo = SKPhoto.photoWithImageURL("https://placehold.jp/15\(i)x15\(i).png")
             photo.caption = caption[i%10]
             photo.shouldCachePhotoURLImage = true
             return photo
@@ -80,6 +79,8 @@ class CustomImageCache: SKImageCacheable {
         cache.store(image, forKey: key)
     }
 
-    func removeImageForKey(_ key: String) {
-    }
+    func removeImageForKey(_ key: String) {}
+    
+    func removeAllImages() {}
+    
 }

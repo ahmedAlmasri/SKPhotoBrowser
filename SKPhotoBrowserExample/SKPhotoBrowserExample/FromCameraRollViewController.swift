@@ -62,14 +62,12 @@ class FromCameraRollViewController: UIViewController, SKPhotoBrowserDelegate, UI
         return 1
     }
 
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return assets.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exampleCollectionViewCell", for: indexPath)
         let asset = assets[(indexPath as NSIndexPath).row]
         
@@ -100,24 +98,22 @@ class FromCameraRollViewController: UIViewController, SKPhotoBrowserDelegate, UI
         }
         
         func open(_ images: [UIImage]) {
-            
             let photoImages: [SKPhotoProtocol] = images.map({ return SKPhoto.photoWithImage($0) })
             let browser = SKPhotoBrowser(originImage: cell.exampleImageView.image!, photos: photoImages, animatedFromView: cell)
             
             browser.initializePageIndex(indexPath.row)
             browser.delegate = self
-//            browser.bounceAnimation = true
 //            browser.displayDeleteButton = true
 //            browser.displayAction = false
             self.present(browser, animated: true, completion: {})
         }
         
-        var fetchedImages: [UIImage] = Array<UIImage>(repeating: UIImage(), count: assets.count)
+        var fetchedImages: [UIImage] = [UIImage](repeating: UIImage(), count: assets.count)
         var fetched = 0
         
-        assets.forEach { (asset) -> () in
+        assets.forEach { (asset) -> Void in
             
-            _ = requestImageForAsset(asset, options:bigRequestOptions, completion: { [weak self] (image, requestId) -> () in
+            _ = requestImageForAsset(asset, options: bigRequestOptions, completion: { [weak self] (image, _) -> Void in
                 
                 if let image = image, let index = self?.assets.index(of: asset) {
                     fetchedImages[index] = image
@@ -143,10 +139,10 @@ class FromCameraRollViewController: UIViewController, SKPhotoBrowserDelegate, UI
         
         let result = PHAsset.fetchAssets(with: options)
         let amount = min(result.count, limit)
-        self.assets = result.objects(at: IndexSet(integersIn: NSRange(location: 0, length: amount).toRange() ?? 0..<0))
+        self.assets = result.objects(at: IndexSet(integersIn: Range(NSRange(location: 0, length: amount)) ?? 0..<0))
     }
     
-    fileprivate func requestImageForAsset(_ asset: PHAsset, options: PHImageRequestOptions, completion: @escaping (_ image: UIImage?, _ requestId: PHImageRequestID?) -> ()) -> PHImageRequestID {
+    fileprivate func requestImageForAsset(_ asset: PHAsset, options: PHImageRequestOptions, completion: @escaping (_ image: UIImage?, _ requestId: PHImageRequestID?) -> Void) -> PHImageRequestID {
         
         let scale = UIScreen.main.scale
         let targetSize: CGSize
@@ -174,11 +170,11 @@ class FromCameraRollViewController: UIViewController, SKPhotoBrowserDelegate, UI
         }
     }
     
-    override var prefersStatusBarHidden : Bool {
+    override var prefersStatusBarHidden: Bool {
         return false
     }
     
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 }
